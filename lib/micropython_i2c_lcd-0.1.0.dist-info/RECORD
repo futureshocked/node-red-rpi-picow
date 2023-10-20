@@ -1,0 +1,7 @@
+lcd_i2c/__init__.py,,
+lcd_i2c/const.py,,
+lcd_i2c/lcd_i2c.py,,
+lcd_i2c/typing.py,,
+lcd_i2c/version.py,,
+micropython_i2c_lcd-0.1.0.dist-info/METADATA,,
+micropython_i2c_lcd-0.1.0.dist-info/RECORD,,
