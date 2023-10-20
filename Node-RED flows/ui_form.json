@@ -1,0 +1,116 @@
+[
+    {
+        "id": "c856ca1850743ecc",
+        "type": "tab",
+        "label": "Form example",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "49b1bcaae0ebcc04",
+        "type": "ui_form",
+        "z": "c856ca1850743ecc",
+        "name": "User information",
+        "label": "User information",
+        "group": "31bee8f5ca8cd347",
+        "order": 2,
+        "width": "6",
+        "height": "6",
+        "options": [
+            {
+                "label": "Name",
+                "value": "name",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Favourite Colour",
+                "value": "colour",
+                "type": "text",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "name": "",
+            "colour": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "className": "",
+        "x": 230,
+        "y": 240,
+        "wires": [
+            [
+                "999cd5d472acf748"
+            ]
+        ]
+    },
+    {
+        "id": "999cd5d472acf748",
+        "type": "function",
+        "z": "c856ca1850743ecc",
+        "name": "Process form input",
+        "func": "msg.payload = \"Name: \" + \n              msg.payload.name + \n              \", Favorite Color: \" +\n               msg.payload.colour;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 240,
+        "wires": [
+            [
+                "0104f6d8e0426778"
+            ]
+        ]
+    },
+    {
+        "id": "0104f6d8e0426778",
+        "type": "ui_text",
+        "z": "c856ca1850743ecc",
+        "group": "31bee8f5ca8cd347",
+        "order": 1,
+        "width": "6",
+        "height": "2",
+        "name": "Show user info",
+        "label": "User information captured",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 760,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "31bee8f5ca8cd347",
+        "type": "ui_group",
+        "name": "Form group",
+        "tab": "c8b3722f03d8c674",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "c8b3722f03d8c674",
+        "type": "ui_tab",
+        "name": "Form",
+        "icon": "dashboard",
+        "order": 7,
+        "disabled": false,
+        "hidden": false
+    }
+]

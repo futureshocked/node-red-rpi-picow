@@ -1,0 +1,212 @@
+[
+    {
+        "id": "d377d719c69391e2",
+        "type": "tab",
+        "label": "Joystick",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b6b864936ee04401",
+        "type": "mqtt in",
+        "z": "d377d719c69391e2",
+        "name": "Get joystick state",
+        "topic": "joystick",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "3f6136cafa8821ad",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 100,
+        "y": 200,
+        "wires": [
+            [
+                "f1534bb2d326f8fc",
+                "bec1da932e4fd340"
+            ]
+        ]
+    },
+    {
+        "id": "f1534bb2d326f8fc",
+        "type": "debug",
+        "z": "d377d719c69391e2",
+        "name": "debug 11",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 260,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "bec1da932e4fd340",
+        "type": "json",
+        "z": "d377d719c69391e2",
+        "name": "Create JSON object",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 240,
+        "y": 300,
+        "wires": [
+            [
+                "38761f392433a5cd"
+            ]
+        ]
+    },
+    {
+        "id": "38761f392433a5cd",
+        "type": "function",
+        "z": "d377d719c69391e2",
+        "name": "Decompose JSON",
+        "func": "var button = { payload: msg.payload.button_value };\nvar x_value = { payload: parseInt(msg.payload.x_value) };\nvar y_value = { payload: parseInt(msg.payload.y_value) };\n\nreturn [button, x_value, y_value];",
+        "outputs": 3,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 200,
+        "wires": [
+            [
+                "b27f43e27ba30a7d"
+            ],
+            [
+                "8ce32e40721ed38c"
+            ],
+            [
+                "c398323d1afe084b"
+            ]
+        ]
+    },
+    {
+        "id": "b27f43e27ba30a7d",
+        "type": "ui_text",
+        "z": "d377d719c69391e2",
+        "group": "2f4edec446e0c962",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "Button state",
+        "label": "Button state",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 630,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "8ce32e40721ed38c",
+        "type": "ui_slider",
+        "z": "d377d719c69391e2",
+        "name": "X Joystick",
+        "label": "X Joystick",
+        "tooltip": "",
+        "group": "2f4edec446e0c962",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "65375",
+        "step": "10",
+        "className": "",
+        "x": 630,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c398323d1afe084b",
+        "type": "ui_slider",
+        "z": "d377d719c69391e2",
+        "name": "Y joystick",
+        "label": "Y joystick",
+        "tooltip": "",
+        "group": "2f4edec446e0c962",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "65375",
+        "step": "10",
+        "className": "",
+        "x": 620,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3f6136cafa8821ad",
+        "type": "mqtt-broker",
+        "name": "Local MQTT broker",
+        "broker": "192.168.20.3",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "2f4edec446e0c962",
+        "type": "ui_group",
+        "name": "Joystick",
+        "tab": "e66479eff8a3ae6d",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e66479eff8a3ae6d",
+        "type": "ui_tab",
+        "name": "Joystick",
+        "icon": "dashboard",
+        "order": 13,
+        "disabled": false,
+        "hidden": false
+    }
+]

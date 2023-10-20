@@ -1,0 +1,421 @@
+[
+    {
+        "id": "c3335877f101176f",
+        "type": "tab",
+        "label": "IR",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a6e15e47d94f99ee",
+        "type": "mqtt in",
+        "z": "c3335877f101176f",
+        "name": "Get lock status",
+        "topic": "IR_received_command",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "3f6136cafa8821ad",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 280,
+        "y": 200,
+        "wires": [
+            [
+                "77e777ae2b01d2d1"
+            ]
+        ]
+    },
+    {
+        "id": "77e777ae2b01d2d1",
+        "type": "ui_template",
+        "z": "c3335877f101176f",
+        "group": "e00b5d0be64ed9a9",
+        "name": "",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "format": "<div>\n    <style>\n        .keypad {\n            display: grid;\n            grid-template-columns: repeat(3, 1fr);\n            gap: 10px;\n            margin-bottom: 10px;\n        }\n\n        .key {\n            background-color: #CCD7C5;\n            padding: 10px;\n            text-align: center;\n            cursor: pointer;\n        }\n\n        .highlight {\n            background-color: #EE9480;\n        }\n    </style>\n\n    <div class=\"keypad\">\n        <div class=\"key\" ng-class=\"{'highlight': number === '1'}\" ng-click=\"send(1)\">1</div>\n        <div class=\"key\" ng-class=\"{'highlight': number === '2'}\" ng-click=\"send(2)\">2</div>\n        <div class=\"key\" ng-class=\"{'highlight': number === '3'}\" ng-click=\"send(3)\">3</div>\n        <div class=\"key\" ng-class=\"{'highlight': number === '4'}\" ng-click=\"send(4)\">4</div>\n        <div class=\"key\" ng-class=\"{'highlight': number === '5'}\" ng-click=\"send(5)\">5</div>\n        <div class=\"key\" ng-class=\"{'highlight': number === '6'}\" ng-click=\"send(6)\">6</div>\n        <div class=\"key\" ng-class=\"{'highlight': number === '7'}\" ng-click=\"send(7)\">7</div>\n        <div class=\"key\" ng-class=\"{'highlight': number === '8'}\" ng-click=\"send(8)\">8</div>\n        <div class=\"key\" ng-class=\"{'highlight': number === '9'}\" ng-click=\"send(9)\">9</div>\n        <div class=\"key\" ng-class=\"{'highlight': number === '0'}\" ng-click=\"send(0)\">0</div>\n    </div>\n</div>\n\n<script>\n    (function(scope) {\n        scope.$watch('msg.payload', function(value) {\n            scope.number = value;\n        });\n    })(scope);\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 560,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cb5d5f9a186ca510",
+        "type": "inject",
+        "z": "c3335877f101176f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "str",
+        "x": 270,
+        "y": 280,
+        "wires": [
+            [
+                "77e777ae2b01d2d1"
+            ]
+        ]
+    },
+    {
+        "id": "3af4829ea6760488",
+        "type": "inject",
+        "z": "c3335877f101176f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "2",
+        "payloadType": "str",
+        "x": 270,
+        "y": 320,
+        "wires": [
+            [
+                "77e777ae2b01d2d1"
+            ]
+        ]
+    },
+    {
+        "id": "3b490d25873112ef",
+        "type": "inject",
+        "z": "c3335877f101176f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "3",
+        "payloadType": "str",
+        "x": 270,
+        "y": 360,
+        "wires": [
+            [
+                "77e777ae2b01d2d1"
+            ]
+        ]
+    },
+    {
+        "id": "69638ff2e4e0c3a2",
+        "type": "inject",
+        "z": "c3335877f101176f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "4",
+        "payloadType": "str",
+        "x": 270,
+        "y": 400,
+        "wires": [
+            [
+                "77e777ae2b01d2d1"
+            ]
+        ]
+    },
+    {
+        "id": "14ca35c32e1e2e72",
+        "type": "inject",
+        "z": "c3335877f101176f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "5",
+        "payloadType": "str",
+        "x": 270,
+        "y": 440,
+        "wires": [
+            [
+                "77e777ae2b01d2d1"
+            ]
+        ]
+    },
+    {
+        "id": "09f202eeada171c3",
+        "type": "inject",
+        "z": "c3335877f101176f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "6",
+        "payloadType": "str",
+        "x": 270,
+        "y": 480,
+        "wires": [
+            [
+                "77e777ae2b01d2d1"
+            ]
+        ]
+    },
+    {
+        "id": "12d7526f2a9df787",
+        "type": "inject",
+        "z": "c3335877f101176f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "7",
+        "payloadType": "str",
+        "x": 270,
+        "y": 520,
+        "wires": [
+            [
+                "77e777ae2b01d2d1"
+            ]
+        ]
+    },
+    {
+        "id": "70b4fc16913d428e",
+        "type": "inject",
+        "z": "c3335877f101176f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "8",
+        "payloadType": "str",
+        "x": 270,
+        "y": 560,
+        "wires": [
+            [
+                "77e777ae2b01d2d1"
+            ]
+        ]
+    },
+    {
+        "id": "4f883ec552d1534a",
+        "type": "inject",
+        "z": "c3335877f101176f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "9",
+        "payloadType": "str",
+        "x": 270,
+        "y": 600,
+        "wires": [
+            [
+                "77e777ae2b01d2d1"
+            ]
+        ]
+    },
+    {
+        "id": "0a602a4dd3acc124",
+        "type": "inject",
+        "z": "c3335877f101176f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "str",
+        "x": 270,
+        "y": 640,
+        "wires": [
+            [
+                "77e777ae2b01d2d1"
+            ]
+        ]
+    },
+    {
+        "id": "0c441851abf149aa",
+        "type": "inject",
+        "z": "c3335877f101176f",
+        "name": "Clear",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 270,
+        "y": 680,
+        "wires": [
+            [
+                "77e777ae2b01d2d1"
+            ]
+        ]
+    },
+    {
+        "id": "3f6136cafa8821ad",
+        "type": "mqtt-broker",
+        "name": "Local MQTT broker",
+        "broker": "192.168.20.3",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "e00b5d0be64ed9a9",
+        "type": "ui_group",
+        "name": "IR command",
+        "tab": "afff3ebc2fa00cad",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "afff3ebc2fa00cad",
+        "type": "ui_tab",
+        "name": "IR",
+        "icon": "dashboard",
+        "order": 17,
+        "disabled": false,
+        "hidden": false
+    }
+]

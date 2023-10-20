@@ -1,0 +1,182 @@
+[
+    {
+        "id": "a4b36e5d52e86771",
+        "type": "tab",
+        "label": "MQTT & RPi Pico test",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "4681f9014bb36f15",
+        "type": "mqtt in",
+        "z": "a4b36e5d52e86771",
+        "name": "sensor_temperature",
+        "topic": "sensor_temperature",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "3f6136cafa8821ad",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 180,
+        "wires": [
+            [
+                "b64efa979f9891f7"
+            ]
+        ]
+    },
+    {
+        "id": "24711678ab934ac6",
+        "type": "mqtt in",
+        "z": "a4b36e5d52e86771",
+        "name": "sensor_humidity",
+        "topic": "sensor_humidity",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "3f6136cafa8821ad",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 240,
+        "wires": [
+            [
+                "ca3807f957c2cb06"
+            ]
+        ]
+    },
+    {
+        "id": "b64efa979f9891f7",
+        "type": "debug",
+        "z": "a4b36e5d52e86771",
+        "name": "temperature",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 410,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "ca3807f957c2cb06",
+        "type": "debug",
+        "z": "a4b36e5d52e86771",
+        "name": "humidity",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "940b363b6c4ac513",
+        "type": "inject",
+        "z": "a4b36e5d52e86771",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "35",
+        "payloadType": "str",
+        "x": 110,
+        "y": 360,
+        "wires": [
+            [
+                "a2f7ed71a9284ead",
+                "02e8a272dc4cfdca"
+            ]
+        ]
+    },
+    {
+        "id": "02e8a272dc4cfdca",
+        "type": "mqtt out",
+        "z": "a4b36e5d52e86771",
+        "name": "servo_angle",
+        "topic": "servo_angle",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3f6136cafa8821ad",
+        "x": 330,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "a2f7ed71a9284ead",
+        "type": "debug",
+        "z": "a4b36e5d52e86771",
+        "name": "servo_angle",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 330,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "3f6136cafa8821ad",
+        "type": "mqtt-broker",
+        "name": "Local MQTT broker",
+        "broker": "192.168.20.3",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]

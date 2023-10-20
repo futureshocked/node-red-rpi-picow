@@ -1,0 +1,225 @@
+[
+    {
+        "id": "c37ba67ad0e107fd",
+        "type": "tab",
+        "label": "Neopixels",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "dd53f2d012a93487",
+        "type": "ui_slider",
+        "z": "c37ba67ad0e107fd",
+        "name": "Red",
+        "label": "Red",
+        "tooltip": "",
+        "group": "263a89041022d456",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "red",
+        "topicType": "str",
+        "min": 0,
+        "max": "255",
+        "step": "10",
+        "className": "",
+        "x": 90,
+        "y": 100,
+        "wires": [
+            [
+                "0204f964d51883be"
+            ]
+        ]
+    },
+    {
+        "id": "6963a7ec7386b5c6",
+        "type": "ui_slider",
+        "z": "c37ba67ad0e107fd",
+        "name": "Green",
+        "label": "Green",
+        "tooltip": "",
+        "group": "263a89041022d456",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "green",
+        "topicType": "str",
+        "min": 0,
+        "max": "255",
+        "step": "10",
+        "className": "",
+        "x": 90,
+        "y": 160,
+        "wires": [
+            [
+                "0204f964d51883be"
+            ]
+        ]
+    },
+    {
+        "id": "644615d328a99499",
+        "type": "ui_slider",
+        "z": "c37ba67ad0e107fd",
+        "name": "Blue",
+        "label": "Blue",
+        "tooltip": "",
+        "group": "263a89041022d456",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "blue",
+        "topicType": "str",
+        "min": 0,
+        "max": "255",
+        "step": "10",
+        "className": "",
+        "x": 90,
+        "y": 220,
+        "wires": [
+            [
+                "0204f964d51883be"
+            ]
+        ]
+    },
+    {
+        "id": "78c01929e126363e",
+        "type": "ui_slider",
+        "z": "c37ba67ad0e107fd",
+        "name": "Delay",
+        "label": "Delay",
+        "tooltip": "",
+        "group": "263a89041022d456",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "delay",
+        "topicType": "str",
+        "min": 0,
+        "max": "1000",
+        "step": "100",
+        "className": "",
+        "x": 90,
+        "y": 300,
+        "wires": [
+            [
+                "0204f964d51883be"
+            ]
+        ]
+    },
+    {
+        "id": "0204f964d51883be",
+        "type": "function",
+        "z": "c37ba67ad0e107fd",
+        "name": "Combine",
+        "func": "var colors = context.get('colors') || \n             {\n                red: 0, \n                green: 0, \n                blue: 0,\n                delay: 0\n             };\n             \nif (msg.topic === 'red') colors.red = msg.payload;\nif (msg.topic === 'green') colors.green = msg.payload;\nif (msg.topic === 'blue') colors.blue = msg.payload;\nif (msg.topic === 'delay') colors.delay = msg.payload;\ncontext.set('colors', colors);\nmsg.topic = 'RGB_LED_Control';\nmsg.payload = colors;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 200,
+        "wires": [
+            [
+                "70d78daad3d597f5",
+                "fc64fa078df7f76a"
+            ]
+        ]
+    },
+    {
+        "id": "fc64fa078df7f76a",
+        "type": "debug",
+        "z": "c37ba67ad0e107fd",
+        "name": "Combined values",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 490,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "70d78daad3d597f5",
+        "type": "mqtt out",
+        "z": "c37ba67ad0e107fd",
+        "name": "MQTT Broker",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3f6136cafa8821ad",
+        "x": 480,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "263a89041022d456",
+        "type": "ui_group",
+        "name": "Neopixels",
+        "tab": "f60f2d12e7b034f6",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "3f6136cafa8821ad",
+        "type": "mqtt-broker",
+        "name": "Local MQTT broker",
+        "broker": "192.168.20.3",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "f60f2d12e7b034f6",
+        "type": "ui_tab",
+        "name": "Neopixels",
+        "icon": "dashboard",
+        "order": 19,
+        "disabled": false,
+        "hidden": false
+    }
+]

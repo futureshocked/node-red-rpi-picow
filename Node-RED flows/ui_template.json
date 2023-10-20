@@ -1,0 +1,118 @@
+[
+    {
+        "id": "b1cb3a0ac62705bd",
+        "type": "tab",
+        "label": "UI Template example",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "5e3f28af427b8518",
+        "type": "ui_template",
+        "z": "b1cb3a0ac62705bd",
+        "group": "3018b7cb85975c24",
+        "name": "User information",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<style>\n    form {\n        background-color: #f8f8f8;\n        padding: 20px;\n        margin-top: 20px;\n        border-radius: 5px;\n        width: 80%;\n    }\n    \n    input[type=\"text\"] {\n    width: 100%;\n    padding: 12px 20px;\n    margin: 8px 0;\n    box-sizing: border-box;\n    border: 2px solid #ccc;\n    border-radius: 4px;\n    }\n\n    input[type=\"submit\"] {\n    background-color: #4CAF50;\n    color: white;\n    padding: 14px 20px;\n    margin: 8px 0;\n    border: none;\n    border-radius: 4px;\n    cursor: pointer;\n    width: 100%;\n    }\n\n    input[type=\"submit\"]:hover {\n    background-color: #45a049;\n    }\n</style>\n    \n    <form ng-submit=\"send({payload: {name: name, color: color}})\">\n        <label for=\"name\">Name:</label><br>\n        <input type=\"text\" id=\"name\" name=\"name\" ng-model=\"name\"><br>\n        <label for=\"color\">Favorite Color:</label><br>\n        <input type=\"text\" id=\"color\" name=\"color\" ng-model=\"color\"><br>\n        <input type=\"submit\" value=\"Submit\">\n    </form>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 190,
+        "y": 200,
+        "wires": [
+            [
+                "d44b50562c744173"
+            ]
+        ]
+    },
+    {
+        "id": "d44b50562c744173",
+        "type": "function",
+        "z": "b1cb3a0ac62705bd",
+        "name": "Process UI template output",
+        "func": "var name = { payload: msg.payload.name };\nvar color = { payload: msg.payload.color };\nreturn [name, color];",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 280,
+        "wires": [
+            [
+                "dbbdabf97a7b3733"
+            ],
+            [
+                "13f0db3ea28669bd"
+            ]
+        ]
+    },
+    {
+        "id": "dbbdabf97a7b3733",
+        "type": "ui_text",
+        "z": "b1cb3a0ac62705bd",
+        "group": "3018b7cb85975c24",
+        "order": 2,
+        "width": 7,
+        "height": 1,
+        "name": "Name",
+        "label": "Name",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 630,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "13f0db3ea28669bd",
+        "type": "ui_text",
+        "z": "b1cb3a0ac62705bd",
+        "group": "3018b7cb85975c24",
+        "order": 3,
+        "width": 7,
+        "height": 1,
+        "name": "Colour",
+        "label": "Colour",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 630,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "3018b7cb85975c24",
+        "type": "ui_group",
+        "name": "UI Template",
+        "tab": "17b23f1e9bf05912",
+        "order": 1,
+        "disp": true,
+        "width": "7",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "17b23f1e9bf05912",
+        "type": "ui_tab",
+        "name": "UI Template",
+        "icon": "dashboard",
+        "order": 8,
+        "disabled": false,
+        "hidden": false
+    }
+]

@@ -1,0 +1,242 @@
+[
+    {
+        "id": "6cd97dc9dc7cd5e1",
+        "type": "tab",
+        "label": "RGB LED strip control",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "46ede954183c42a1",
+        "type": "group",
+        "z": "6cd97dc9dc7cd5e1",
+        "name": "Widgets group",
+        "style": {
+            "stroke": "#ff0000",
+            "fill": "#d1d1d1",
+            "label": true,
+            "fill-opacity": "0.24"
+        },
+        "nodes": [
+            "a0947f9cfbc6dfc2",
+            "84e7ddc2698894c3",
+            "320bde459c36b0b5",
+            "35e0be14bb294ec5"
+        ],
+        "x": 74,
+        "y": 219,
+        "w": 152,
+        "h": 262
+    },
+    {
+        "id": "a0947f9cfbc6dfc2",
+        "type": "ui_slider",
+        "z": "6cd97dc9dc7cd5e1",
+        "g": "46ede954183c42a1",
+        "name": "Red",
+        "label": "Red",
+        "tooltip": "",
+        "group": "652f578a18758ad4",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "red",
+        "topicType": "str",
+        "min": 0,
+        "max": "255",
+        "step": 1,
+        "className": "",
+        "x": 150,
+        "y": 260,
+        "wires": [
+            [
+                "63e33958170a7eed"
+            ]
+        ]
+    },
+    {
+        "id": "84e7ddc2698894c3",
+        "type": "ui_slider",
+        "z": "6cd97dc9dc7cd5e1",
+        "g": "46ede954183c42a1",
+        "name": "Green",
+        "label": "Green",
+        "tooltip": "",
+        "group": "652f578a18758ad4",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "green",
+        "min": 0,
+        "max": "255",
+        "step": 1,
+        "x": 150,
+        "y": 320,
+        "wires": [
+            [
+                "63e33958170a7eed"
+            ]
+        ]
+    },
+    {
+        "id": "320bde459c36b0b5",
+        "type": "ui_slider",
+        "z": "6cd97dc9dc7cd5e1",
+        "g": "46ede954183c42a1",
+        "name": "Blue",
+        "label": "Blue",
+        "tooltip": "",
+        "group": "652f578a18758ad4",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "blue",
+        "min": 0,
+        "max": "255",
+        "step": 1,
+        "x": 150,
+        "y": 380,
+        "wires": [
+            [
+                "63e33958170a7eed"
+            ]
+        ]
+    },
+    {
+        "id": "35e0be14bb294ec5",
+        "type": "ui_slider",
+        "z": "6cd97dc9dc7cd5e1",
+        "g": "46ede954183c42a1",
+        "name": "Delay",
+        "label": "Delay",
+        "tooltip": "",
+        "group": "652f578a18758ad4",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "delay",
+        "topicType": "str",
+        "min": 0,
+        "max": "1000",
+        "step": 1,
+        "className": "",
+        "x": 150,
+        "y": 440,
+        "wires": [
+            [
+                "63e33958170a7eed"
+            ]
+        ]
+    },
+    {
+        "id": "63e33958170a7eed",
+        "type": "function",
+        "z": "6cd97dc9dc7cd5e1",
+        "name": "Combine",
+        "func": "var colors = context.get('colors') || {red:0, green:0, blue:0, delay:0};\n\nif(msg.topic === 'red') colors.red = msg.payload;\nif(msg.topic === 'green') colors.green = msg.payload;\nif(msg.topic === 'blue') colors.blue = msg.payload;\nif(msg.topic === 'delay') colors.delay = msg.payload;\n\ncontext.set('colors', colors);\n\nmsg.topic = 'RGB_LED_Control';\nmsg.payload = colors;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 360,
+        "wires": [
+            [
+                "675c0e5e1a724c7b",
+                "8fb33423b8d4084e"
+            ]
+        ]
+    },
+    {
+        "id": "675c0e5e1a724c7b",
+        "type": "mqtt out",
+        "z": "6cd97dc9dc7cd5e1",
+        "name": "MQTT Broker",
+        "topic": "RGB_LED_Control",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "694bd92dc7019404",
+        "x": 580,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "8fb33423b8d4084e",
+        "type": "debug",
+        "z": "6cd97dc9dc7cd5e1",
+        "name": "Combined values",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "652f578a18758ad4",
+        "type": "ui_group",
+        "name": "RGB Control",
+        "tab": "f819c345801614ec",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "694bd92dc7019404",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.20.18",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "test_topic",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "f819c345801614ec",
+        "type": "ui_tab",
+        "name": "RGB LED Control",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]

@@ -1,0 +1,165 @@
+[
+    {
+        "id": "ca6caccc133fdad6",
+        "type": "tab",
+        "label": "Global environment variables",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d3a00d8095b805df",
+        "type": "inject",
+        "z": "ca6caccc133fdad6",
+        "name": "Get URL",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "tech_explorations_url",
+        "payloadType": "env",
+        "x": 140,
+        "y": 80,
+        "wires": [
+            [
+                "8cae1b9040c7529c"
+            ]
+        ]
+    },
+    {
+        "id": "8cae1b9040c7529c",
+        "type": "debug",
+        "z": "ca6caccc133fdad6",
+        "name": "debug 22",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 460,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "1942d2e9dc24a6fd",
+        "type": "debug",
+        "z": "ca6caccc133fdad6",
+        "name": "debug 23",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 460,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "968c3467e33e5b72",
+        "type": "inject",
+        "z": "ca6caccc133fdad6",
+        "name": "Get Key",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "SECRET_KEY",
+        "payloadType": "env",
+        "x": 150,
+        "y": 140,
+        "wires": [
+            [
+                "1942d2e9dc24a6fd"
+            ]
+        ]
+    },
+    {
+        "id": "5fd77f31a2e295df",
+        "type": "inject",
+        "z": "ca6caccc133fdad6",
+        "name": "Trigger JS",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 200,
+        "wires": [
+            [
+                "90b6898c234ab3a7"
+            ]
+        ]
+    },
+    {
+        "id": "90b6898c234ab3a7",
+        "type": "function",
+        "z": "ca6caccc133fdad6",
+        "name": "Get URL",
+        "func": "var message = env.get(\"tech_explorations_url\");\nmsg.payload = message;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 200,
+        "wires": [
+            [
+                "65bf3b79be1d1381"
+            ]
+        ]
+    },
+    {
+        "id": "65bf3b79be1d1381",
+        "type": "debug",
+        "z": "ca6caccc133fdad6",
+        "name": "debug 24",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 460,
+        "y": 200,
+        "wires": []
+    }
+]

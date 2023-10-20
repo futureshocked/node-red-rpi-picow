@@ -1,0 +1,129 @@
+[
+    {
+        "id": "e359d0fbe1c04d5d",
+        "type": "tab",
+        "label": "Water level",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b3dbb454a87b0f12",
+        "type": "mqtt in",
+        "z": "e359d0fbe1c04d5d",
+        "name": "Get water level reading",
+        "topic": "waterlevel",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "3f6136cafa8821ad",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 180,
+        "y": 220,
+        "wires": [
+            [
+                "eeb51f28e64c83f0"
+            ]
+        ]
+    },
+    {
+        "id": "03a4255ae3e83357",
+        "type": "ui_gauge",
+        "z": "e359d0fbe1c04d5d",
+        "name": "Water quantity",
+        "group": "4075f8114d4eccc3",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "wave",
+        "title": "Water in container",
+        "label": "ml",
+        "format": "{{value}}",
+        "min": "5",
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 440,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "eeb51f28e64c83f0",
+        "type": "range",
+        "z": "e359d0fbe1c04d5d",
+        "minin": "12000",
+        "maxin": "33000",
+        "minout": "5",
+        "maxout": "50",
+        "action": "clamp",
+        "round": true,
+        "property": "payload",
+        "name": "ADC to ml",
+        "x": 310,
+        "y": 300,
+        "wires": [
+            [
+                "03a4255ae3e83357"
+            ]
+        ]
+    },
+    {
+        "id": "3f6136cafa8821ad",
+        "type": "mqtt-broker",
+        "name": "Local MQTT broker",
+        "broker": "192.168.20.3",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "4075f8114d4eccc3",
+        "type": "ui_group",
+        "name": "Water sensor",
+        "tab": "b131fd2076df5712",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "b131fd2076df5712",
+        "type": "ui_tab",
+        "name": "Water sensor",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

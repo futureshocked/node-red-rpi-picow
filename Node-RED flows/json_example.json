@@ -1,0 +1,92 @@
+[
+    {
+        "id": "f84404bc709d353d",
+        "type": "tab",
+        "label": "JSON node example",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e72468e0d9a56c26",
+        "type": "inject",
+        "z": "f84404bc709d353d",
+        "name": "JSON string",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"temperature\": 20,\"humidity\": 60,\"wind\": {\"speed\": 5,\"direction\": \"N\"} }",
+        "payloadType": "str",
+        "x": 150,
+        "y": 160,
+        "wires": [
+            [
+                "91f85461a7f3bb12"
+            ]
+        ]
+    },
+    {
+        "id": "91f85461a7f3bb12",
+        "type": "json",
+        "z": "f84404bc709d353d",
+        "name": "Create JSON object",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 280,
+        "y": 240,
+        "wires": [
+            [
+                "cc992ce0b2a2f1d4"
+            ]
+        ]
+    },
+    {
+        "id": "cc992ce0b2a2f1d4",
+        "type": "function",
+        "z": "f84404bc709d353d",
+        "name": "Extract temperature and wind speed",
+        "func": "var temperature = msg.payload.temperature;\nvar windSpeed = msg.payload.wind.speed;\nmsg.payload = {\n    temperature: temperature,\n    windSpeed: windSpeed\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 320,
+        "wires": [
+            [
+                "4e65bd70b46f9273"
+            ]
+        ]
+    },
+    {
+        "id": "4e65bd70b46f9273",
+        "type": "debug",
+        "z": "f84404bc709d353d",
+        "name": "Show JSON object",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 400,
+        "wires": []
+    }
+]

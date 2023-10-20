@@ -1,0 +1,159 @@
+[
+    {
+        "id": "8eaf3ccd782b663e",
+        "type": "tab",
+        "label": "DHT11",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c28f4cda388dbe2c",
+        "type": "mqtt in",
+        "z": "8eaf3ccd782b663e",
+        "name": "DHT11 Temperature",
+        "topic": "pico/dht11/temperature",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "3f6136cafa8821ad",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 160,
+        "wires": [
+            [
+                "9fac4155297140eb"
+            ]
+        ]
+    },
+    {
+        "id": "044a90055b7bf5ed",
+        "type": "mqtt in",
+        "z": "8eaf3ccd782b663e",
+        "name": "DHT11 Humidity",
+        "topic": "pico/dht11/humidity",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "3f6136cafa8821ad",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 160,
+        "y": 220,
+        "wires": [
+            [
+                "d510eba3265e2a7c"
+            ]
+        ]
+    },
+    {
+        "id": "9fac4155297140eb",
+        "type": "ui_gauge",
+        "z": "8eaf3ccd782b663e",
+        "name": "Temperature",
+        "group": "a1b79a452474f462",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "DHT11 Temperature",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 430,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "d510eba3265e2a7c",
+        "type": "ui_gauge",
+        "z": "8eaf3ccd782b663e",
+        "name": "Humidity",
+        "group": "a1b79a452474f462",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "DHT11 Humidity",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 420,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "3f6136cafa8821ad",
+        "type": "mqtt-broker",
+        "name": "Local MQTT broker",
+        "broker": "192.168.20.3",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "a1b79a452474f462",
+        "type": "ui_group",
+        "name": "DHT11",
+        "tab": "7261a4c1a39c4ed0",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "7261a4c1a39c4ed0",
+        "type": "ui_tab",
+        "name": "DHT11",
+        "icon": "dashboard",
+        "order": 22,
+        "disabled": false,
+        "hidden": false
+    }
+]

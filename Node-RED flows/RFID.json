@@ -1,0 +1,120 @@
+[
+    {
+        "id": "599c96d3aa2a2caa",
+        "type": "tab",
+        "label": "RFID",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "1edb6c3227ecef1c",
+        "type": "mqtt in",
+        "z": "599c96d3aa2a2caa",
+        "name": "Get lock status",
+        "topic": "rfid_status",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "3f6136cafa8821ad",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 220,
+        "wires": [
+            [
+                "72d6c84f719b576f",
+                "05e49b65bf9bc78e"
+            ]
+        ]
+    },
+    {
+        "id": "05e49b65bf9bc78e",
+        "type": "ui_template",
+        "z": "599c96d3aa2a2caa",
+        "group": "63fad1118f20b47e",
+        "name": "Show lock status",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<svg height=\"100\" width=\"100\">\n    <circle cx=\"50\" cy=\"50\" \n    r=\"40\" \n    stroke=\"black\" \n    stroke-width=\"3\" \n    fill=\"{{msg.payload==='close' ? 'red' : 'green' }}\">\n</svg>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 390,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "72d6c84f719b576f",
+        "type": "debug",
+        "z": "599c96d3aa2a2caa",
+        "name": "debug 13",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 360,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "3f6136cafa8821ad",
+        "type": "mqtt-broker",
+        "name": "Local MQTT broker",
+        "broker": "192.168.20.3",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "63fad1118f20b47e",
+        "type": "ui_group",
+        "name": "RFID lock",
+        "tab": "1552779537876a86",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "1552779537876a86",
+        "type": "ui_tab",
+        "name": "RFID lock",
+        "icon": "dashboard",
+        "order": 15,
+        "disabled": false,
+        "hidden": false
+    }
+]

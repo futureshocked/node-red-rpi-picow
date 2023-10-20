@@ -1,0 +1,102 @@
+[
+    {
+        "id": "e06224ef840cf151",
+        "type": "tab",
+        "label": "Slider and Gauge",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c2fe4ee4e477832b",
+        "type": "ui_gauge",
+        "z": "e06224ef840cf151",
+        "name": "Set PWM value",
+        "group": "a721fd21c360f1c2",
+        "order": 2,
+        "width": "9",
+        "height": "9",
+        "gtype": "compass",
+        "title": "PWM value set",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 540,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "16aa606d6ea66618",
+        "type": "ui_slider",
+        "z": "e06224ef840cf151",
+        "name": "PWM",
+        "label": "PWM value",
+        "tooltip": "",
+        "group": "a721fd21c360f1c2",
+        "order": 1,
+        "width": "9",
+        "height": "2",
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "100",
+        "step": "10",
+        "className": "",
+        "x": 290,
+        "y": 180,
+        "wires": [
+            [
+                "c2fe4ee4e477832b",
+                "93446fed52f72316"
+            ]
+        ]
+    },
+    {
+        "id": "93446fed52f72316",
+        "type": "debug",
+        "z": "e06224ef840cf151",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "a721fd21c360f1c2",
+        "type": "ui_group",
+        "name": "Slider and Gauge",
+        "tab": "dbf7b3db1c1861c2",
+        "order": 2,
+        "disp": true,
+        "width": "9",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "dbf7b3db1c1861c2",
+        "type": "ui_tab",
+        "name": "Slider and Gauge",
+        "icon": "dashboard",
+        "order": 4,
+        "disabled": false,
+        "hidden": false
+    }
+]

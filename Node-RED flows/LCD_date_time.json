@@ -1,0 +1,108 @@
+[
+    {
+        "id": "5fd7c213bb2bdeac",
+        "type": "tab",
+        "label": "LCD date time",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "99cf0695088276f8",
+        "type": "inject",
+        "z": "5fd7c213bb2bdeac",
+        "name": "Get current time and date",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 160,
+        "wires": [
+            [
+                "43b169eb93cc7dc6"
+            ]
+        ]
+    },
+    {
+        "id": "43b169eb93cc7dc6",
+        "type": "function",
+        "z": "5fd7c213bb2bdeac",
+        "name": "Split datetime into parts",
+        "func": "var date = new Date(msg.payload);\nmsg.payload = {\n    date: date.toLocaleDateString(),\n    time: date.toLocaleTimeString()\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 260,
+        "wires": [
+            [
+                "7a28940d553e3394"
+            ]
+        ]
+    },
+    {
+        "id": "7a28940d553e3394",
+        "type": "mqtt out",
+        "z": "5fd7c213bb2bdeac",
+        "name": "Publish date and time",
+        "topic": "datetime",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3f6136cafa8821ad",
+        "x": 600,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "3f6136cafa8821ad",
+        "type": "mqtt-broker",
+        "name": "Local MQTT broker",
+        "broker": "192.168.20.3",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]

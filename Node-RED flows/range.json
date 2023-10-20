@@ -1,0 +1,76 @@
+[
+    {
+        "id": "29b0376b80d2d210",
+        "type": "tab",
+        "label": "Range",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "0ac84eef121f8613",
+        "type": "inject",
+        "z": "29b0376b80d2d210",
+        "name": "Light sensor",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "2000",
+        "payloadType": "num",
+        "x": 130,
+        "y": 120,
+        "wires": [
+            [
+                "4e265414224804f0"
+            ]
+        ]
+    },
+    {
+        "id": "4e265414224804f0",
+        "type": "range",
+        "z": "29b0376b80d2d210",
+        "minin": "0",
+        "maxin": "1024",
+        "minout": "0",
+        "maxout": "100",
+        "action": "clamp",
+        "round": false,
+        "property": "payload",
+        "name": "Scale sensor data",
+        "x": 290,
+        "y": 200,
+        "wires": [
+            [
+                "656f36846cc26ad6"
+            ]
+        ]
+    },
+    {
+        "id": "656f36846cc26ad6",
+        "type": "debug",
+        "z": "29b0376b80d2d210",
+        "name": "Scaled light intensity",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 420,
+        "y": 280,
+        "wires": []
+    }
+]

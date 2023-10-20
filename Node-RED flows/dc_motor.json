@@ -1,0 +1,217 @@
+[
+    {
+        "id": "314105dc3b902734",
+        "type": "tab",
+        "label": "DC motor",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c1a742f297c5376c",
+        "type": "ui_switch",
+        "z": "314105dc3b902734",
+        "name": "Direction",
+        "label": "Direction",
+        "tooltip": "",
+        "group": "52ac3b32017b3e18",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": true,
+        "onvalueType": "num",
+        "onicon": "fa-rotate-right",
+        "oncolor": "AAAAAA",
+        "offvalue": false,
+        "offvalueType": "num",
+        "officon": "fa-rotate-left",
+        "offcolor": "AAAAAA",
+        "animate": true,
+        "className": "",
+        "x": 80,
+        "y": 120,
+        "wires": [
+            [
+                "d0b70b1e7aa2c0c4"
+            ]
+        ]
+    },
+    {
+        "id": "66ea8ea8c3e3359b",
+        "type": "ui_slider",
+        "z": "314105dc3b902734",
+        "name": "Motor speed",
+        "label": "Motor speed",
+        "tooltip": "",
+        "group": "52ac3b32017b3e18",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "className": "",
+        "x": 90,
+        "y": 200,
+        "wires": [
+            [
+                "9e7b2903405d49d5"
+            ]
+        ]
+    },
+    {
+        "id": "d0b70b1e7aa2c0c4",
+        "type": "function",
+        "z": "314105dc3b902734",
+        "name": "Global direction variable set",
+        "func": "global.set('direction', msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 120,
+        "wires": [
+            [
+                "0c2a235688c9604e"
+            ]
+        ]
+    },
+    {
+        "id": "9e7b2903405d49d5",
+        "type": "function",
+        "z": "314105dc3b902734",
+        "name": "Global speed variable set",
+        "func": "global.set('speed', msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 200,
+        "wires": [
+            [
+                "0c2a235688c9604e"
+            ]
+        ]
+    },
+    {
+        "id": "0c2a235688c9604e",
+        "type": "function",
+        "z": "314105dc3b902734",
+        "name": "Combine",
+        "func": "var dir   = global.get('direction') || 0;\nvar speed = global.get('speed')     || 0;\nvar combinedString = dir.toString() + ',' + speed.toString();\nmsg.payload = combinedString;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 160,
+        "wires": [
+            [
+                "bf97971133d98c86",
+                "a36b5d8864266a11"
+            ]
+        ]
+    },
+    {
+        "id": "bf97971133d98c86",
+        "type": "mqtt out",
+        "z": "314105dc3b902734",
+        "name": "Send to Pico",
+        "topic": "motor_control",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3f6136cafa8821ad",
+        "x": 710,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "a36b5d8864266a11",
+        "type": "debug",
+        "z": "314105dc3b902734",
+        "name": "debug 16",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "52ac3b32017b3e18",
+        "type": "ui_group",
+        "name": "DC Motor",
+        "tab": "5ae0e073f958da87",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "3f6136cafa8821ad",
+        "type": "mqtt-broker",
+        "name": "Local MQTT broker",
+        "broker": "192.168.20.3",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "5ae0e073f958da87",
+        "type": "ui_tab",
+        "name": "DC Motor",
+        "icon": "dashboard",
+        "order": 21,
+        "disabled": false,
+        "hidden": false
+    }
+]

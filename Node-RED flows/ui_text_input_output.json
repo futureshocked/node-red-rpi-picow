@@ -1,0 +1,94 @@
+[
+    {
+        "id": "2dba534e860ed5b2",
+        "type": "tab",
+        "label": "Text input and output",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "5ca14ea3f08d4078",
+        "type": "ui_text",
+        "z": "2dba534e860ed5b2",
+        "group": "8f3a3dbfb63c3918",
+        "order": 2,
+        "width": 9,
+        "height": 2,
+        "name": "Output",
+        "label": "You typed:",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 470,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "43cc5fa3817acecc",
+        "type": "ui_text_input",
+        "z": "2dba534e860ed5b2",
+        "name": "Type some text",
+        "label": "Type some text",
+        "tooltip": "",
+        "group": "8f3a3dbfb63c3918",
+        "order": 1,
+        "width": 9,
+        "height": 2,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 240,
+        "y": 220,
+        "wires": [
+            [
+                "abb3e6ee61a547ee",
+                "5ca14ea3f08d4078"
+            ]
+        ]
+    },
+    {
+        "id": "abb3e6ee61a547ee",
+        "type": "debug",
+        "z": "2dba534e860ed5b2",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "8f3a3dbfb63c3918",
+        "type": "ui_group",
+        "name": "Text input and output",
+        "tab": "b4a241a875d72b07",
+        "order": 2,
+        "disp": true,
+        "width": 9,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "b4a241a875d72b07",
+        "type": "ui_tab",
+        "name": "Text in/out",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    }
+]

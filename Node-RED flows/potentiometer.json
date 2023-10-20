@@ -1,0 +1,148 @@
+[
+    {
+        "id": "a6198acfe8b01e52",
+        "type": "tab",
+        "label": "pot_gauge",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2af7742ace2a554e",
+        "type": "mqtt in",
+        "z": "a6198acfe8b01e52",
+        "name": "Get pot value",
+        "topic": "pot_gauge",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "3f6136cafa8821ad",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 140,
+        "wires": [
+            [
+                "de8e8fd25a3eea1d",
+                "7f031a1bf8bbdec4"
+            ]
+        ]
+    },
+    {
+        "id": "de8e8fd25a3eea1d",
+        "type": "debug",
+        "z": "a6198acfe8b01e52",
+        "name": "Show pot value",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "a4ad05c0ce9d78f1",
+        "type": "ui_gauge",
+        "z": "a6198acfe8b01e52",
+        "name": "Pot value",
+        "group": "62fa1d2284eecaf4",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Potentiometer value",
+        "label": "units",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 480,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "7f031a1bf8bbdec4",
+        "type": "range",
+        "z": "a6198acfe8b01e52",
+        "minin": "670",
+        "maxin": "65535",
+        "minout": "0",
+        "maxout": "100",
+        "action": "scale",
+        "round": true,
+        "property": "payload",
+        "name": "Map pot value",
+        "x": 320,
+        "y": 80,
+        "wires": [
+            [
+                "a4ad05c0ce9d78f1"
+            ]
+        ]
+    },
+    {
+        "id": "3f6136cafa8821ad",
+        "type": "mqtt-broker",
+        "name": "Local MQTT broker",
+        "broker": "192.168.20.3",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "62fa1d2284eecaf4",
+        "type": "ui_group",
+        "name": "Potentiometer",
+        "tab": "3216a9900d9e22c0",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "3216a9900d9e22c0",
+        "type": "ui_tab",
+        "name": "Pot",
+        "icon": "dashboard",
+        "order": 9,
+        "disabled": false,
+        "hidden": false
+    }
+]

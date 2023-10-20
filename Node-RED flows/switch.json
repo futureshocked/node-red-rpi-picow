@@ -1,0 +1,210 @@
+[
+    {
+        "id": "f6cddc4dab354618",
+        "type": "tab",
+        "label": "Switch node",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "6859a78d08ad6897",
+        "type": "inject",
+        "z": "f6cddc4dab354618",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "25",
+        "payloadType": "num",
+        "x": 110,
+        "y": 180,
+        "wires": [
+            [
+                "b4324d5d295ff9e1"
+            ]
+        ]
+    },
+    {
+        "id": "b4324d5d295ff9e1",
+        "type": "switch",
+        "z": "f6cddc4dab354618",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lte",
+                "v": "10",
+                "vt": "num"
+            },
+            {
+                "t": "lte",
+                "v": "25",
+                "vt": "num"
+            },
+            {
+                "t": "gt",
+                "v": "25",
+                "vt": "num"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 3,
+        "x": 250,
+        "y": 180,
+        "wires": [
+            [
+                "dc0b7f464293bc3d"
+            ],
+            [
+                "1e0cfdd004c3cd7e"
+            ],
+            [
+                "acbe70b004d523fa"
+            ]
+        ]
+    },
+    {
+        "id": "dc0b7f464293bc3d",
+        "type": "change",
+        "z": "f6cddc4dab354618",
+        "name": "Cold",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Cold",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 410,
+        "y": 120,
+        "wires": [
+            [
+                "a8ada98e2fd31d15"
+            ]
+        ]
+    },
+    {
+        "id": "1e0cfdd004c3cd7e",
+        "type": "change",
+        "z": "f6cddc4dab354618",
+        "name": "Moderate",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Moderate",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 180,
+        "wires": [
+            [
+                "cac4cd4d84708cef"
+            ]
+        ]
+    },
+    {
+        "id": "acbe70b004d523fa",
+        "type": "change",
+        "z": "f6cddc4dab354618",
+        "name": "Hot",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Hot",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 410,
+        "y": 240,
+        "wires": [
+            [
+                "f3e46549ada31fcd"
+            ]
+        ]
+    },
+    {
+        "id": "a8ada98e2fd31d15",
+        "type": "debug",
+        "z": "f6cddc4dab354618",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "cac4cd4d84708cef",
+        "type": "debug",
+        "z": "f6cddc4dab354618",
+        "name": "debug 9",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "f3e46549ada31fcd",
+        "type": "debug",
+        "z": "f6cddc4dab354618",
+        "name": "debug 10",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 240,
+        "wires": []
+    }
+]

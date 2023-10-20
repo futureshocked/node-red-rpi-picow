@@ -1,0 +1,123 @@
+[
+    {
+        "id": "1fd650e5c6dd1a76",
+        "type": "tab",
+        "label": "Local environment variables",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "22ad5504cae857f0",
+        "type": "inject",
+        "z": "1fd650e5c6dd1a76",
+        "name": "Trigger 1",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 60,
+        "wires": [
+            [
+                "c63a13e0c71f0759"
+            ]
+        ]
+    },
+    {
+        "id": "c63a13e0c71f0759",
+        "type": "function",
+        "z": "1fd650e5c6dd1a76",
+        "name": "Set local variable",
+        "func": "flow.set(\"temperature\", 26);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 290,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "52d096f2a58a5a99",
+        "type": "inject",
+        "z": "1fd650e5c6dd1a76",
+        "name": "Trigger 2",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 180,
+        "wires": [
+            [
+                "3be40c0b7fc7867e"
+            ]
+        ]
+    },
+    {
+        "id": "3be40c0b7fc7867e",
+        "type": "function",
+        "z": "1fd650e5c6dd1a76",
+        "name": "Get local environment variable",
+        "func": "msg.payload = flow.get(\"temperature\");\nreturn msg;\n\n// var temp = flow.get(\"temperature\");\n// if (temp > 24) {\n//     msg.payload = \"It's warm!\";\n// } else {\n//     msg.payload = \"It's cool!\";\n// }\n// return msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 180,
+        "wires": [
+            [
+                "41485334498286e6"
+            ]
+        ]
+    },
+    {
+        "id": "41485334498286e6",
+        "type": "debug",
+        "z": "1fd650e5c6dd1a76",
+        "name": "Show local variable",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 180,
+        "wires": []
+    }
+]

@@ -1,0 +1,167 @@
+[
+    {
+        "id": "15d609cdfd550e94",
+        "type": "tab",
+        "label": "PIR Sensor",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a25285cb309bf0e4",
+        "type": "mqtt in",
+        "z": "15d609cdfd550e94",
+        "name": "Get PIR sensor state",
+        "topic": "pir",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "3f6136cafa8821ad",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 240,
+        "wires": [
+            [
+                "b5e0ab38f5eab6ff",
+                "51d92fcae75ff0da"
+            ]
+        ]
+    },
+    {
+        "id": "37287c1376fcf5e0",
+        "type": "ui_audio",
+        "z": "15d609cdfd550e94",
+        "name": "Verbalise",
+        "group": "8cf944e51090e04a",
+        "voice": "com.apple.voice.compact.en-AU.Karen",
+        "always": "",
+        "x": 500,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "b5e0ab38f5eab6ff",
+        "type": "ui_text_input",
+        "z": "15d609cdfd550e94",
+        "name": "",
+        "label": "",
+        "tooltip": "",
+        "group": "8cf944e51090e04a",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 500,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "435bed0a36898eab",
+        "type": "inject",
+        "z": "15d609cdfd550e94",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Hello world",
+        "payloadType": "str",
+        "x": 290,
+        "y": 120,
+        "wires": [
+            [
+                "37287c1376fcf5e0"
+            ]
+        ]
+    },
+    {
+        "id": "51d92fcae75ff0da",
+        "type": "rbe",
+        "z": "15d609cdfd550e94",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "septopics": true,
+        "property": "payload",
+        "topi": "topic",
+        "x": 310,
+        "y": 200,
+        "wires": [
+            [
+                "37287c1376fcf5e0"
+            ]
+        ]
+    },
+    {
+        "id": "3f6136cafa8821ad",
+        "type": "mqtt-broker",
+        "name": "Local MQTT broker",
+        "broker": "192.168.20.3",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "8cf944e51090e04a",
+        "type": "ui_group",
+        "name": "PIR",
+        "tab": "dde0fa19d923df4e",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "dde0fa19d923df4e",
+        "type": "ui_tab",
+        "name": "PIR",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

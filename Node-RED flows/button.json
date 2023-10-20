@@ -1,0 +1,140 @@
+[
+    {
+        "id": "9909d9591fb3691c",
+        "type": "tab",
+        "label": "Button",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ef3faba06d5639f7",
+        "type": "mqtt in",
+        "z": "9909d9591fb3691c",
+        "name": "Button state",
+        "topic": "button_state",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "3f6136cafa8821ad",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 90,
+        "y": 140,
+        "wires": [
+            [
+                "7343e61e769360a0",
+                "772b3570152908e1"
+            ]
+        ]
+    },
+    {
+        "id": "7343e61e769360a0",
+        "type": "function",
+        "z": "9909d9591fb3691c",
+        "name": "Process button input value",
+        "func": "if (msg.payload == \"1\") {\n    msg.payload = \"Pressed\";\n} else if (msg.payload == \"0\") {\n    msg.payload = \"Not Pressed\";\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 80,
+        "wires": [
+            [
+                "84c61f922a6f998c"
+            ]
+        ]
+    },
+    {
+        "id": "84c61f922a6f998c",
+        "type": "ui_text",
+        "z": "9909d9591fb3691c",
+        "group": "56347c9b6cea427b",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "Button state",
+        "label": "Button state",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 530,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "772b3570152908e1",
+        "type": "debug",
+        "z": "9909d9591fb3691c",
+        "name": "debug 9",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 280,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "3f6136cafa8821ad",
+        "type": "mqtt-broker",
+        "name": "Local MQTT broker",
+        "broker": "192.168.20.3",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "56347c9b6cea427b",
+        "type": "ui_group",
+        "name": "Button",
+        "tab": "c851672871ffdcb4",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "c851672871ffdcb4",
+        "type": "ui_tab",
+        "name": "LED Control",
+        "icon": "dashboard",
+        "order": 11,
+        "disabled": false,
+        "hidden": false
+    }
+]

@@ -1,0 +1,188 @@
+[
+    {
+        "id": "3faab5b36ff8c869",
+        "type": "tab",
+        "label": "Conditional and iterative example flow",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "5e47dc81f7a7b3c8",
+        "type": "ui_text_input",
+        "z": "3faab5b36ff8c869",
+        "name": "",
+        "label": "Your comma-separated numbers",
+        "tooltip": "Enter numbers separated with a comma",
+        "group": "aadb30e4854b943e",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 220,
+        "y": 120,
+        "wires": [
+            [
+                "c4b3253e5e9a57fd"
+            ]
+        ]
+    },
+    {
+        "id": "5c4b2c8017b0c586",
+        "type": "ui_text",
+        "z": "3faab5b36ff8c869",
+        "group": "aadb30e4854b943e",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "=> 5",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 550,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "c4b3253e5e9a57fd",
+        "type": "split",
+        "z": "3faab5b36ff8c869",
+        "name": "",
+        "splt": ",",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 210,
+        "y": 260,
+        "wires": [
+            [
+                "371755fa04476c78"
+            ]
+        ]
+    },
+    {
+        "id": "371755fa04476c78",
+        "type": "switch",
+        "z": "3faab5b36ff8c869",
+        "name": "Determine outputs",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gte",
+                "v": "5",
+                "vt": "num"
+            },
+            {
+                "t": "lt",
+                "v": "5",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 330,
+        "y": 400,
+        "wires": [
+            [
+                "5c4b2c8017b0c586"
+            ],
+            [
+                "63f11fe21ee97370"
+            ]
+        ]
+    },
+    {
+        "id": "63f11fe21ee97370",
+        "type": "ui_text",
+        "z": "3faab5b36ff8c869",
+        "group": "aadb30e4854b943e",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "< 5",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 550,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "bb5d4f6ab3089768",
+        "type": "ui_spacer",
+        "z": "3faab5b36ff8c869",
+        "name": "spacer",
+        "group": "3e8ea1e009eb6be3",
+        "order": 2,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "fb2f5955050353fe",
+        "type": "ui_spacer",
+        "z": "3faab5b36ff8c869",
+        "name": "spacer",
+        "group": "3e8ea1e009eb6be3",
+        "order": 6,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "aadb30e4854b943e",
+        "type": "ui_group",
+        "name": "Iterate",
+        "tab": "824f314a555b9dd3",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "3e8ea1e009eb6be3",
+        "type": "ui_group",
+        "name": "Dynamic Switch",
+        "tab": "4d3aff296e53caa4",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "824f314a555b9dd3",
+        "type": "ui_tab",
+        "name": "Iterate",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "4d3aff296e53caa4",
+        "type": "ui_tab",
+        "name": "Dynamic switch",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

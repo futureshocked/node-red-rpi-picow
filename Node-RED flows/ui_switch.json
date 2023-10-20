@@ -1,0 +1,122 @@
+[
+    {
+        "id": "77830e103b0ff3e1",
+        "type": "tab",
+        "label": "Switch",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a90de5259756640f",
+        "type": "ui_switch",
+        "z": "77830e103b0ff3e1",
+        "name": "Control light",
+        "label": "Control light state",
+        "tooltip": "",
+        "group": "0fb41c3db171c5a8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 350,
+        "y": 220,
+        "wires": [
+            [
+                "db03b7b03f38cea0",
+                "3906efb71b9f3ef4"
+            ]
+        ]
+    },
+    {
+        "id": "db03b7b03f38cea0",
+        "type": "debug",
+        "z": "77830e103b0ff3e1",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "3906efb71b9f3ef4",
+        "type": "function",
+        "z": "77830e103b0ff3e1",
+        "name": "Process switch action",
+        "func": "if (msg.payload === true) {\n    msg.payload = \"The light is ON\";\n} else if (msg.payload === false) {\n    msg.payload = \"The light is OFF\";\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 280,
+        "wires": [
+            [
+                "39eeb9d110a80c54"
+            ]
+        ]
+    },
+    {
+        "id": "39eeb9d110a80c54",
+        "type": "ui_text",
+        "z": "77830e103b0ff3e1",
+        "group": "0fb41c3db171c5a8",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "Light state",
+        "label": "The light is...",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 910,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "0fb41c3db171c5a8",
+        "type": "ui_group",
+        "name": "Switch group",
+        "tab": "523b736f201613e4",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "523b736f201613e4",
+        "type": "ui_tab",
+        "name": "Switch",
+        "icon": "dashboard",
+        "order": 5,
+        "disabled": false,
+        "hidden": false
+    }
+]

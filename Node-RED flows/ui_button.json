@@ -1,0 +1,74 @@
+[
+    {
+        "id": "dcd040bc8943e12a",
+        "type": "tab",
+        "label": "Button",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "13c61d65c8f1db50",
+        "type": "ui_button",
+        "z": "dcd040bc8943e12a",
+        "name": "Click me button",
+        "group": "c73a8124756570cc",
+        "order": 0,
+        "width": "2",
+        "height": "2",
+        "passthru": false,
+        "label": "Press me",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "CLICKED",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 460,
+        "y": 280,
+        "wires": [
+            [
+                "e6afea2d827c1184"
+            ]
+        ]
+    },
+    {
+        "id": "e6afea2d827c1184",
+        "type": "debug",
+        "z": "dcd040bc8943e12a",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "c73a8124756570cc",
+        "type": "ui_group",
+        "name": "Button",
+        "tab": "46bc78a3489c1917",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "46bc78a3489c1917",
+        "type": "ui_tab",
+        "name": "Button",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    }
+]

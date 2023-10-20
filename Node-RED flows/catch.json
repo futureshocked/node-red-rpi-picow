@@ -1,0 +1,90 @@
+[
+    {
+        "id": "e669c6f7a374b1ea",
+        "type": "tab",
+        "label": "The Catch node",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a95f3e4b14adcc3f",
+        "type": "inject",
+        "z": "e669c6f7a374b1ea",
+        "name": "Trigger error",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Hello",
+        "payloadType": "str",
+        "x": 250,
+        "y": 140,
+        "wires": [
+            [
+                "3c5952177e7de3c2"
+            ]
+        ]
+    },
+    {
+        "id": "d16b92f7a5124240",
+        "type": "catch",
+        "z": "e669c6f7a374b1ea",
+        "name": "Catch errors",
+        "scope": [
+            "3c5952177e7de3c2"
+        ],
+        "uncaught": false,
+        "x": 230,
+        "y": 240,
+        "wires": [
+            [
+                "ff41e89425ab3d28"
+            ]
+        ]
+    },
+    {
+        "id": "ff41e89425ab3d28",
+        "type": "debug",
+        "z": "e669c6f7a374b1ea",
+        "name": "Show error",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 470,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "3c5952177e7de3c2",
+        "type": "function",
+        "z": "e669c6f7a374b1ea",
+        "name": "Throw an error",
+        "func": "throw new Error(\"This is a deliberate error\");\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    }
+]

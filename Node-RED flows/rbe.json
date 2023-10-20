@@ -1,0 +1,104 @@
+[
+    {
+        "id": "0f0541d67774577a",
+        "type": "tab",
+        "label": "RBE flow",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "55eed18d8c2f0b17",
+        "type": "debug",
+        "z": "0f0541d67774577a",
+        "name": "debug 11",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "33031caa63fa3038",
+        "type": "inject",
+        "z": "0f0541d67774577a",
+        "name": "On Button",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "On",
+        "payloadType": "str",
+        "x": 120,
+        "y": 100,
+        "wires": [
+            [
+                "16ab848f51cd75f4"
+            ]
+        ]
+    },
+    {
+        "id": "615a13f4fe6f7d53",
+        "type": "inject",
+        "z": "0f0541d67774577a",
+        "name": "Off Button",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Off",
+        "payloadType": "str",
+        "x": 120,
+        "y": 180,
+        "wires": [
+            [
+                "16ab848f51cd75f4"
+            ]
+        ]
+    },
+    {
+        "id": "16ab848f51cd75f4",
+        "type": "rbe",
+        "z": "0f0541d67774577a",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "septopics": true,
+        "property": "payload",
+        "topi": "topic",
+        "x": 310,
+        "y": 140,
+        "wires": [
+            [
+                "55eed18d8c2f0b17"
+            ]
+        ]
+    }
+]
