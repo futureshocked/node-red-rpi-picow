@@ -1,7 +1,7 @@
 import machine
 import time
 
-ser  = machine.Pin(20,machine.Pin.OUT)
+ser   = machine.Pin(20,machine.Pin.OUT)
 rclk  = machine.Pin(18,machine.Pin.OUT)
 srclk = machine.Pin(16,machine.Pin.OUT)
 
