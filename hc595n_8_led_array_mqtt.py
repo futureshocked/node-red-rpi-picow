@@ -19,6 +19,16 @@ led_patterns = [0b10000001, 0b01000010, 0b00100100, 0b00011000,
 SSID        = '<--WIFI-NETWORK-NAME-->'
 PASSWORD    = '<--WIFI-PASSWORD-->'
 
+wlan = network.WLAN(network.STA_IF)
+wlan.active(True)
+wlan.connect(SSID,PASSWORD)
+
+while not wlan.isconnected():
+    pass
+
+print('Connected to Wi-Fi')
+print(wlan.ifconfig())
+
 # MQTT parameters
 SERVER      = '<--SERVER-IP-ADDRESS-->'  # Replace with your MQTT broker IP
 CLIENT_ID   = b'pico'
