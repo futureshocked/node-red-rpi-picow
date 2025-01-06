@@ -13,8 +13,8 @@ PIN      = 28 # GPIO pin connected to WS2812
 np = neopixel.NeoPixel(machine.Pin(PIN), NUM_LEDS)
 
 # Wi-Fi credentials
-SSID      = '<--WIFI-NETWORK-NAME-->'
-PASSWORD  = '<--WIFI-PASSWORD-->'
+SSID       = '<--WIFI-NETWORK-NAME-->'
+WPASSWORD  = '<--WIFI-PASSWORD-->'
 
 # MQTT parameters
 SERVER    = '<--SERVER-IP-ADDRESS-->'    # Replace with your MQTT broker IP
@@ -61,7 +61,7 @@ def main():
     # Activate the network interface
     wlan = network.WLAN(network.STA_IF)
     wlan.active(True)
-    wlan.connect(SSID, PASSWORD)
+    wlan.connect(SSID, WPASSWORD)
 
     print('Starting... Trying to connect to Wifi...')
 
