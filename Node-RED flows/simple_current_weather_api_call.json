@@ -1,0 +1,117 @@
+[
+    {
+        "id": "f52b3b94e9da4d1a",
+        "type": "tab",
+        "label": "Simple current weather API call",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "69e81a7e91bde8bd",
+        "type": "http request",
+        "z": "f52b3b94e9da4d1a",
+        "name": "HTTP request to OpenWeatherMap.org",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://api.openweathermap.org/data/2.5/weather?q=Sydney,au&appid=e02111282aaaaaa467a&units=metric",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 340,
+        "y": 200,
+        "wires": [
+            [
+                "dbb51fe8a68c4901",
+                "9bc484e88617f274"
+            ]
+        ]
+    },
+    {
+        "id": "e37d2783c8925121",
+        "type": "inject",
+        "z": "f52b3b94e9da4d1a",
+        "name": "Trigger",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 140,
+        "wires": [
+            [
+                "69e81a7e91bde8bd"
+            ]
+        ]
+    },
+    {
+        "id": "dbb51fe8a68c4901",
+        "type": "function",
+        "z": "f52b3b94e9da4d1a",
+        "name": "Process OpenWeatherMap response",
+        "func": "var data = JSON.parse(msg.payload);\nmsg.payload = {\n    temperature: data.main.temp,\n    humidity: data.main.humidity\n};\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 280,
+        "wires": [
+            [
+                "ffbb2bd4a49447fc"
+            ]
+        ]
+    },
+    {
+        "id": "ffbb2bd4a49447fc",
+        "type": "debug",
+        "z": "f52b3b94e9da4d1a",
+        "name": "Show temperature and humidity",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "9bc484e88617f274",
+        "type": "debug",
+        "z": "f52b3b94e9da4d1a",
+        "name": "debug 25",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 120,
+        "wires": []
+    }
+]

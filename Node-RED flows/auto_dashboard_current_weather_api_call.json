@@ -1,0 +1,231 @@
+[
+    {
+        "id": "e26a3843548c0a4e",
+        "type": "tab",
+        "label": "Auto Dashboard current weather API call",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a88e1ba4b48575da",
+        "type": "http request",
+        "z": "e26a3843548c0a4e",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://api.openweathermap.org/data/2.5/weather?q=Sydney,au&appid=e02111282aaaaaa467a&units=metric",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 210,
+        "y": 240,
+        "wires": [
+            [
+                "aec4bd6e841b5d7e"
+            ]
+        ]
+    },
+    {
+        "id": "3e7db7f3c49b654f",
+        "type": "inject",
+        "z": "e26a3843548c0a4e",
+        "name": "Trigger every 30 seconds",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "30",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 120,
+        "wires": [
+            [
+                "a88e1ba4b48575da"
+            ]
+        ]
+    },
+    {
+        "id": "aec4bd6e841b5d7e",
+        "type": "function",
+        "z": "e26a3843548c0a4e",
+        "name": "Process OpenWeatherMap response",
+        "func": "var data = JSON.parse(msg.payload);\nmsg.payload = {\n    temperature: data.main.temp,\n    humidity: data.main.humidity\n};\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 210,
+        "y": 360,
+        "wires": [
+            [
+                "9885d7a1bd2c3d7a",
+                "bbcdc58e9c3321d4",
+                "45d611c3f3321df8"
+            ]
+        ]
+    },
+    {
+        "id": "cf44b38ebe10d6ac",
+        "type": "ui_gauge",
+        "z": "e26a3843548c0a4e",
+        "name": "",
+        "group": "4e77d2d384205a36",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperature",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 690,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "3f55e3861268ad76",
+        "type": "ui_gauge",
+        "z": "e26a3843548c0a4e",
+        "name": "",
+        "group": "4e77d2d384205a36",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "humidity",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 680,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "9885d7a1bd2c3d7a",
+        "type": "debug",
+        "z": "e26a3843548c0a4e",
+        "name": "Show values",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 510,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "bbcdc58e9c3321d4",
+        "type": "change",
+        "z": "e26a3843548c0a4e",
+        "name": "Get temp",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.temperature",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 500,
+        "y": 360,
+        "wires": [
+            [
+                "cf44b38ebe10d6ac"
+            ]
+        ]
+    },
+    {
+        "id": "45d611c3f3321df8",
+        "type": "change",
+        "z": "e26a3843548c0a4e",
+        "name": "Humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.humidity",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 500,
+        "y": 420,
+        "wires": [
+            [
+                "3f55e3861268ad76"
+            ]
+        ]
+    },
+    {
+        "id": "4e77d2d384205a36",
+        "type": "ui_group",
+        "name": "Weather group",
+        "tab": "3917a867c27dce91",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "3917a867c27dce91",
+        "type": "ui_tab",
+        "name": "Weather monitor",
+        "icon": "dashboard",
+        "order": 8,
+        "disabled": false,
+        "hidden": false
+    }
+]

@@ -1,0 +1,118 @@
+[
+    {
+        "id": "ac80ab9782c80a82",
+        "type": "tab",
+        "label": "Google Sheet read data",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "838cfab3e047ca42",
+        "type": "GSheet",
+        "z": "ac80ab9782c80a82",
+        "creds": "9933408427441961",
+        "method": "get",
+        "action": "",
+        "sheet": "1fIjsG4j6EpuG-hStnCptxFp85fO7d5a4St1SKKGcR0o",
+        "cells": "Sheet1",
+        "flatten": false,
+        "name": "Read data",
+        "x": 290,
+        "y": 160,
+        "wires": [
+            [
+                "527836ae06084ad7",
+                "908268c41bf2506e"
+            ]
+        ]
+    },
+    {
+        "id": "0cf2993f626c7f7b",
+        "type": "debug",
+        "z": "ac80ab9782c80a82",
+        "name": "Show GSheet data",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "5ba2ada12f41e7f6",
+        "type": "inject",
+        "z": "ac80ab9782c80a82",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 160,
+        "wires": [
+            [
+                "838cfab3e047ca42"
+            ]
+        ]
+    },
+    {
+        "id": "527836ae06084ad7",
+        "type": "function",
+        "z": "ac80ab9782c80a82",
+        "name": "Extract last row",
+        "func": "msg.payload = msg.payload[msg.payload.length - 1];\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 220,
+        "wires": [
+            [
+                "0cf2993f626c7f7b"
+            ]
+        ]
+    },
+    {
+        "id": "908268c41bf2506e",
+        "type": "debug",
+        "z": "ac80ab9782c80a82",
+        "name": "Show all rows",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "9933408427441961",
+        "type": "gauth",
+        "name": "node-red-service-account@node-red-402900.iam.gserviceaccount.com"
+    }
+]

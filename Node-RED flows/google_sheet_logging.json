@@ -1,0 +1,110 @@
+[
+    {
+        "id": "93f97d844392384a",
+        "type": "tab",
+        "label": "Google sheet logging",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f2488a9a2c292e08",
+        "type": "inject",
+        "z": "93f97d844392384a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[1,2,3,4,5.1]",
+        "payloadType": "jsonata",
+        "x": 110,
+        "y": 60,
+        "wires": [
+            [
+                "47b3ad622beeb11f"
+            ]
+        ]
+    },
+    {
+        "id": "47b3ad622beeb11f",
+        "type": "GSheet",
+        "z": "93f97d844392384a",
+        "creds": "9933408427441961",
+        "method": "append",
+        "action": "",
+        "sheet": "1fIjsG4j6EpuG-hStnCptxFp85fO7d5a4St1SKKGcR0o",
+        "cells": "Sheet1",
+        "flatten": false,
+        "name": "Record in new row",
+        "x": 690,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "93e702ed1fc068b3",
+        "type": "function",
+        "z": "93f97d844392384a",
+        "name": "Generate random numbers",
+        "func": "function generateRandomNumbers() {\n    let randomNumbers = [];\n    for (let i = 0; i < 3; i++) {\n        let randomNumber = Math.floor(Math.random() * (100 - 20 + 1) + 20);\n        randomNumbers.push(randomNumber);\n    }\n    return randomNumbers;\n}\n\nconst result = generateRandomNumbers();\n\nmsg.payload = result;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 120,
+        "wires": [
+            [
+                "47b3ad622beeb11f"
+            ]
+        ]
+    },
+    {
+        "id": "b777149631e96e2d",
+        "type": "inject",
+        "z": "93f97d844392384a",
+        "name": "Trigger every 5 seconds",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 120,
+        "wires": [
+            [
+                "93e702ed1fc068b3"
+            ]
+        ]
+    },
+    {
+        "id": "9933408427441961",
+        "type": "gauth",
+        "name": "node-red-service-account@node-red-402900.iam.gserviceaccount.com"
+    }
+]

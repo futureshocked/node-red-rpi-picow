@@ -1,0 +1,288 @@
+[
+    {
+        "id": "dfad0a8fc79bd4b9",
+        "type": "tab",
+        "label": "MySQL",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "86d891d78ba15a4b",
+        "type": "group",
+        "z": "dfad0a8fc79bd4b9",
+        "name": "Create new row",
+        "style": {
+            "label": true,
+            "stroke": "#0070c0",
+            "color": "#0070c0"
+        },
+        "nodes": [
+            "e8e8fd01d5e97692",
+            "ae1b696b8b6c901f",
+            "6e7892401cb78565",
+            "7e91b883320fb468"
+        ],
+        "x": 34,
+        "y": 119,
+        "w": 732,
+        "h": 142
+    },
+    {
+        "id": "4a8bed188062af85",
+        "type": "group",
+        "z": "dfad0a8fc79bd4b9",
+        "name": "Get last row",
+        "style": {
+            "label": true,
+            "stroke": "#ff3f3f",
+            "color": "#ff0000"
+        },
+        "nodes": [
+            "7c08e6e3735b5bef",
+            "ac4411aebe8dbd4b",
+            "2f6b22988f380bbc",
+            "57a05f8973bd017a",
+            "538e160835da6644",
+            "7f9ba245db8b34a6",
+            "25cd892093fecb47"
+        ],
+        "x": 34,
+        "y": 339,
+        "w": 832,
+        "h": 202
+    },
+    {
+        "id": "e8e8fd01d5e97692",
+        "type": "mysql",
+        "z": "dfad0a8fc79bd4b9",
+        "g": "86d891d78ba15a4b",
+        "mydb": "358c23aada568009",
+        "name": "MySQL",
+        "x": 640,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ae1b696b8b6c901f",
+        "type": "inject",
+        "z": "dfad0a8fc79bd4b9",
+        "g": "86d891d78ba15a4b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 220,
+        "wires": [
+            [
+                "6e7892401cb78565"
+            ]
+        ]
+    },
+    {
+        "id": "6e7892401cb78565",
+        "type": "function",
+        "z": "dfad0a8fc79bd4b9",
+        "g": "86d891d78ba15a4b",
+        "name": "Create INSERT SQL",
+        "func": "function generateRandomNumbers() {\n  let randomNumbers = [];\n  for(let i = 0; i < 2; i++) {\n    let randomNumber = Math.floor(Math.random() * (100 - 20 + 1) + 20);\n    randomNumbers.push(randomNumber);\n  }\n  return randomNumbers;\n}\n\nconst numbers = generateRandomNumbers();\n\nconst query = `INSERT INTO sensorData VALUES (${numbers[0]}, ${numbers[1]}, ${msg.payload});`;\nmsg.payload = query;\nmsg.topic = query;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 220,
+        "wires": [
+            [
+                "7e91b883320fb468",
+                "e8e8fd01d5e97692"
+            ]
+        ]
+    },
+    {
+        "id": "7e91b883320fb468",
+        "type": "debug",
+        "z": "dfad0a8fc79bd4b9",
+        "g": "86d891d78ba15a4b",
+        "name": "SQL query",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "7c08e6e3735b5bef",
+        "type": "inject",
+        "z": "dfad0a8fc79bd4b9",
+        "g": "4a8bed188062af85",
+        "name": "Get latest row",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "SELECT * FROM sensorData ORDER BY timestamp DESC LIMIT 1;",
+        "x": 150,
+        "y": 460,
+        "wires": [
+            [
+                "ac4411aebe8dbd4b"
+            ]
+        ]
+    },
+    {
+        "id": "ac4411aebe8dbd4b",
+        "type": "mysql",
+        "z": "dfad0a8fc79bd4b9",
+        "g": "4a8bed188062af85",
+        "mydb": "358c23aada568009",
+        "name": "Get last row",
+        "x": 330,
+        "y": 460,
+        "wires": [
+            [
+                "7f9ba245db8b34a6",
+                "25cd892093fecb47"
+            ]
+        ]
+    },
+    {
+        "id": "2f6b22988f380bbc",
+        "type": "debug",
+        "z": "dfad0a8fc79bd4b9",
+        "g": "4a8bed188062af85",
+        "name": "Temp",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "57a05f8973bd017a",
+        "type": "debug",
+        "z": "dfad0a8fc79bd4b9",
+        "g": "4a8bed188062af85",
+        "name": "Humi",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "538e160835da6644",
+        "type": "debug",
+        "z": "dfad0a8fc79bd4b9",
+        "g": "4a8bed188062af85",
+        "name": "Time",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "7f9ba245db8b34a6",
+        "type": "function",
+        "z": "dfad0a8fc79bd4b9",
+        "g": "4a8bed188062af85",
+        "name": "Parse SQL response",
+        "func": "const jsonObject = msg.payload[0];\n\nconst tempValues    = {payload: jsonObject.temp};\nconst humValues         = {payload: jsonObject.humi};\nconst timestampValues   = {payload: jsonObject.timestamp};\n\nconsole.log('Temperature values:', tempValues);\nconsole.log('Humidity values:', humValues);\nconsole.log('Timestamp values:', timestampValues);\n\n\nreturn [tempValues, humValues, timestampValues];\n\n",
+        "outputs": 3,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 460,
+        "wires": [
+            [
+                "2f6b22988f380bbc"
+            ],
+            [
+                "57a05f8973bd017a"
+            ],
+            [
+                "538e160835da6644"
+            ]
+        ]
+    },
+    {
+        "id": "25cd892093fecb47",
+        "type": "debug",
+        "z": "dfad0a8fc79bd4b9",
+        "g": "4a8bed188062af85",
+        "name": "Raw response",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "358c23aada568009",
+        "type": "MySQLdatabase",
+        "name": "Local mySQL",
+        "host": "192.168.20.3",
+        "port": "3306",
+        "db": "nodeRED",
+        "tz": "",
+        "charset": "UTF8"
+    }
+]
